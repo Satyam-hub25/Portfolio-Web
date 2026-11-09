@@ -1,153 +1,150 @@
-﻿
-# MyPortfolio
+# DeveloperSatyam Portfolio (Frontend-Only Architecture)
 
-A personal portfolio site built with React and Vite showcasing projects, skills, and contact information.
+A modern, responsive, high-performance personal portfolio website built with **React.js**, **Vite**, **Pure CSS3**, and **EmailJS**. Inspired directly by the reference design: dark matte background (`#121212`), golden yellow accents (`#f5b72e`), high-contrast pill action buttons, smooth animations, and clean responsive layouts.
 
-This repository contains the source for the portfolio website. It uses Vite for development, Tailwind CSS for styling, and several React libraries for animation and UI.
+> **100% Frontend Only:** Zero Node.js/Express backend, zero database, zero server maintenance required. Form submissions are delivered directly to your email inbox using the official EmailJS browser SDK.
 
-## Table of contents
-- About
-- Quick start
-- Available scripts
-- Project structure
-- Tech stack
+---
 
+## 🎨 Color Palette & Visual Identity
 
-## About
+- **Primary Background**: `#121212` (Matte Dark Charcoal)
+- **Secondary Background**: `#181818` (Section contrast)
+- **Cards & Surfaces**: `#222222` to `#282828` with `#333333` border
+- **Accent Yellow**: `#f5b72e` (Logo `W.`, Name Highlight, Active Nav Indicator)
+- **Pill Buttons**: `#ffffff` background with `#121212` text
+- **Social Badges**: Circular icons for Facebook, Twitter/X, YouTube, Instagram, GitHub, LinkedIn
 
-The site highlights recent projects, tools/tech used, and a resume link. Pages and UI components are implemented as React components in the `src` directory. The `Development` page lists featured projects and tech stack icons.
+---
 
-## Quick start
+## 📁 Project Structure
 
-Prerequisites
+```
+MyPortfolio/
+├── frontend/
+│   ├── public/
+│   │   └── assets/               # Visual media assets & portfolio images
+│   ├── src/
+│   │   ├── assets/               # Local icons & media
+│   │   ├── components/
+│   │   │   ├── BackToTop/        # Floating smooth scroll-to-top button
+│   │   │   ├── Footer/           # Social links, copyright, quick navigation
+│   │   │   ├── Icons/            # Custom responsive SVG icon library
+│   │   │   ├── Navbar/           # Sticky navbar with active indicator & mobile drawer
+│   │   │   ├── ProjectModal/     # Interactive project deep-dive modal
+│   │   │   └── ScrollProgress/   # Golden progress bar at top of screen
+│   │   ├── data/
+│   │   │   └── portfolioData.js  # Dynamic portfolio data model
+│   │   ├── hooks/
+│   │   │   ├── useIntersectionObserver.js # Scroll entrance animations
+│   │   │   ├── useScrollSpy.js            # Tracks active section on scroll
+│   │   │   └── useTypingEffect.js         # Typewriter effect for roles
+│   │   ├── sections/
+│   │   │   ├── About/            # "What I do" cards, journey, education
+│   │   │   ├── Contact/          # EmailJS contact form & social links
+│   │   │   ├── Experience/       # Hackathons, certifications, education timeline
+│   │   │   ├── Hero/             # Intro, name highlight, CTAs, profile frame
+│   │   │   ├── Projects/         # 3-column project grid with filters & modals
+│   │   │   └── Skills/           # Categorized tech expertise with filters
+│   │   ├── styles/
+│   │   │   ├── animations.css    # Keyframes & transitions
+│   │   │   ├── global.css        # Base styles, resets, pill button classes
+│   │   │   └── variables.css     # CSS custom properties / theme colors
+│   │   ├── App.css
+│   │   ├── App.jsx               # Main portfolio layout
+│   │   ├── index.css
+│   │   └── main.jsx
+│   ├── .env                      # Local EmailJS credentials (git-ignored)
+│   ├── .env.example              # Placeholder environment template
+│   ├── index.html
+│   ├── package.json
+│   └── vite.config.js
+│
+├── .gitignore                    # Ensures .env is never committed
+├── package.json                  # Root scripts
+└── README.md
+```
 
-- Node.js (LTS recommended, Node 18+)
-- npm (bundled with Node) or yarn
+---
 
-Install dependencies
+## ⚡ Quick Start
 
-```powershell
+### 1. Install Dependencies
+
+```bash
+cd frontend
 npm install
 ```
 
-Run dev server
+### 2. Start the Development Server
 
-```powershell
+```bash
 npm run dev
 ```
 
-Build for production
+Visit **`http://localhost:5173`** in your browser.
 
-```powershell
-npm run build
+---
+
+## 📧 EmailJS Setup Guide (Bina Kisi Server Ke Email Kaise Receive Karein)
+
+Portfolio ka Contact Form seedha aapke personal email par message bhejta hai via **EmailJS Browser SDK**.
+
+### Step 1: EmailJS Account Banayein
+1. [EmailJS](https://www.emailjs.com/) par free account sign up karein.
+
+### Step 2: Email Service Add Karein
+1. Dashboard me **Email Services** par jayein.
+2. **Add New Service** par click karein aur **Gmail** (ya apna preferred provider) select karein.
+3. Apna email account connect karein.
+4. Yahan se apna **`Service ID`** copy karein (e.g., `service_xxxxxx`).
+
+### Step 3: Email Template Banayein
+1. Dashboard me **Email Templates** par jayein.
+2. **Create New Template** par click karein.
+3. Subject line me likhein:
+   ```
+   New Portfolio Message from {{from_name}}: {{subject}}
+   ```
+4. Content editor me yeh template variables use karein:
+   ```
+   Name: {{from_name}}
+   Email: {{from_email}}
+   Subject: {{subject}}
+
+   Message:
+   {{message}}
+   ```
+5. Template settings me **Reply-To** field me `{{reply_to}}` set karein (taaki aap reply karein toh visitor ko email jaye).
+6. Template save karein aur apna **`Template ID`** copy karein (e.g., `template_xxxxxx`).
+
+### Step 4: Public Key Copy Karein
+1. Dashboard me **Account** -> **API Keys** par jayein.
+2. Apna **`Public Key`** copy karein (e.g., `user_xxxxxx` ya random string).
+
+### Step 5: Environment Variables Configure Karein
+`frontend/.env` file open karein aur values paste karein:
+
+```env
+VITE_EMAILJS_SERVICE_ID=service_your_actual_id
+VITE_EMAILJS_TEMPLATE_ID=template_your_actual_id
+VITE_EMAILJS_PUBLIC_KEY=your_actual_public_key
 ```
 
-Preview production build locally
+> **Note:** Jab aap `.env` me changes karein, toh terminal me `npm run dev` ko restart karein taaki Vite nayi environment variables read kar sake.
 
-```powershell
-npm run preview
-```
+---
 
-Lint the project
+## 🚀 One-Click Deployment (Vercel / Netlify / GitHub Pages)
 
-```powershell
-npm run lint
-```
+Chunki yeh **100% Frontend-Only** project hai, aap ise kisi bhi static host par free me deploy kar sakte hain:
 
-## Available scripts
-
-The following scripts are defined in `package.json`:
-# My Portfolio
-
-Hi — I'm Ganesh. This is my personal portfolio site where I showcase projects I built, tools I use, and a link to my resume. I built this site with React and Vite to keep the dev experience fast and the output lightweight.
-
-## What this repo contains
-
-- The complete source for my portfolio website.
-- React components live under `src/` (pages, components and styles).
-- Static assets (images) live in `public/Images`.
-- Build and dev configuration files are at the project root (`vite.config.js`, `tailwind.config.js`, `postcss.config.js`).
-
-## Quick start (how I run this locally)
-
-Prerequisites:
-
-- Node.js (I use LTS, Node 18+)
-- npm (comes with Node) — you can use yarn if you prefer
-
-Install dependencies:
-
-```powershell
-npm install
-```
-
-Start the dev server:
-
-```powershell
-npm run dev
-```
-
-Open http://localhost:5173/ in your browser (Vite will show the exact URL when it starts).
-
-Build for production:
-
-```powershell
-npm run build
-```
-
-Preview the production build locally:
-
-```powershell
-npm run preview
-```
-
-Lint the project (I keep lint rules strict):
-
-```powershell
-npm run lint
-```
-
-## Scripts (from package.json)
-
-I keep the following scripts available:
-
-```json
-"scripts": {
-	"dev": "vite",
-	"build": "vite build",
-	"lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-	"preview": "vite preview"
-}
-```
-
-## Notable files & structure
-
-- `src/pages/Development.jsx` — shows my recent projects and tech stack.
-- `src/` — all React code (pages, components, hooks, styles).
-- `public/Images/` — images used for project cards and avatars.
-- `package.json` — dependencies and scripts.
-
-If you want to update project cards, replace images in `public/Images` and update the corresponding links/titles inside `src/pages/Development.jsx`.
-
-## Tech I use
-
-- React 18
-- Vite
-- Tailwind CSS
-- Framer Motion
-- React Router
-- react-icons and small helper libraries (see `package.json` for the full list)
-
-## Notes for future me (and contributors)
-
-- Keep images optimized: use compressed PNG/JPEG and reasonable dimensions to improve load times.
-- If you add new dependencies, run `npm install` and verify the app builds with `npm run build`.
-- Run `npm run lint` and fix any reported issues before committing.
-
-## Contact & resume
-
-My resume is linked from the site (check the Development page). To update the resume link, edit the anchor URL in `src/pages/Development.jsx`.
-
-
-
-
+### Deploying to Vercel:
+1. Apne code ko GitHub repository me push karein.
+2. [Vercel](https://vercel.com/) par jayein aur **Import Project** karein.
+3. **Root Directory**: `frontend` select karein.
+4. **Environment Variables** section me 3 keys add karein:
+   - `VITE_EMAILJS_SERVICE_ID`
+   - `VITE_EMAILJS_TEMPLATE_ID`
+   - `VITE_EMAILJS_PUBLIC_KEY`
+5. Click **Deploy**. Website live ho jayegi!

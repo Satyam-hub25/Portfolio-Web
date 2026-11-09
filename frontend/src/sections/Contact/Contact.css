@@ -1,0 +1,149 @@
+.contact-section {
+  background-color: var(--bg-primary);
+  position: relative;
+  padding-bottom: 80px;
+}
+
+.contact-container {
+  max-width: 760px;
+}
+
+/* Form Layout matching Reference Image 4 */
+.contact-form-wrapper {
+  background-color: transparent;
+  margin-bottom: 48px;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.form-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Sleek dark inputs matching Reference Image 4 */
+.contact-input {
+  width: 100%;
+  padding: 16px 20px;
+  background-color: #222222;
+  border: 1px solid #333333;
+  border-radius: 10px;
+  color: var(--text-primary);
+  font-size: 1rem;
+  transition: all var(--transition-fast);
+}
+
+.contact-input::placeholder {
+  color: #6e6e6e;
+  font-weight: 400;
+}
+
+.contact-input:focus {
+  outline: none;
+  background-color: #262626;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(245, 183, 46, 0.15);
+}
+
+.contact-input.error {
+  border-color: var(--color-error);
+  box-shadow: 0 0 0 3px var(--color-error-bg);
+}
+
+.contact-textarea {
+  resize: vertical;
+  min-height: 150px;
+}
+
+.field-error-msg {
+  font-size: 0.82rem;
+  color: var(--color-error);
+  padding-left: 4px;
+}
+
+/* Alert notifications */
+.form-alert-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px 20px;
+  border-radius: var(--radius-sm);
+  font-size: 0.92rem;
+  line-height: 1.5;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.form-alert-banner.success {
+  background-color: var(--color-success-bg);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  color: #86efac;
+}
+
+.form-alert-banner.error {
+  background-color: var(--color-error-bg);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #fca5a5;
+}
+
+.banner-text strong {
+  color: #ffffff;
+}
+
+/* Submit Button Wrapper (Centered matching Reference Image 4) */
+.form-submit-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.contact-submit-btn {
+  min-width: 160px;
+  padding: 14px 44px;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.contact-submit-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Social links row matching Reference Image 4 */
+.contact-social-footer {
+  display: flex;
+  justify-content: center;
+  padding-top: 36px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.contact-social-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* Screen reader only utility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 600px) {
+  .contact-input {
+    padding: 14px 16px;
+  }
+}

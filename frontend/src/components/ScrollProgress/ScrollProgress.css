@@ -1,0 +1,10 @@
+.scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #f5b72e, #fcd34d, #f5b72e);
+  z-index: 1100;
+  transition: width 0.1s ease-out;
+  box-shadow: 0 0 10px rgba(245, 183, 46, 0.7);
+}
